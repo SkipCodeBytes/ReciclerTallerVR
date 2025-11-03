@@ -10,6 +10,8 @@ public class PasserbySpawner : MonoBehaviour
     [SerializeField] private Vector2 spawnFrequencyRange = new Vector2(4.0f, 7.0f);
     [SerializeField] private float moventSpeed = 3.5f;
 
+    [SerializeField] private float spawnTrashProbability = 0.75f;
+
     [SerializeField] private Transform pointSpawnerA;
     [SerializeField] private Transform pointSpawnerB;
 
@@ -60,6 +62,9 @@ public class PasserbySpawner : MonoBehaviour
     {
         if (other.CompareTag("Passerby"))
         {
+            // Verificar probabilidad de generar basura
+            if (Random.value > spawnTrashProbability) return;
+            
             if (trashObjectList.Count == 0) return;
             int randomIndex = Random.Range(0, trashObjectList.Count);
 
@@ -68,7 +73,7 @@ public class PasserbySpawner : MonoBehaviour
                 Transform trashObject = InstanceManager.Instance.GetObject(trashObjectList[randomIndex]).transform;
                 trashObject.transform.position = other.transform.position;
                 Rigidbody trashRigisbody = trashObject.GetComponent<Rigidbody>();
-
+                trashRigisbody.linearVelocity = Vector3.zero;
                 trashRigisbody.AddForce(throwDirection, ForceMode.Impulse);
             }
             ));
