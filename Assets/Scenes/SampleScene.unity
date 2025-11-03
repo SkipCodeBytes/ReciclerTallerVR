@@ -8918,7 +8918,7 @@ Transform:
   m_GameObject: {fileID: 2032487729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9016,6 +9016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba1a62542a2893479a3d869714852f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrashSpawner
+  spawnAreaBox: {x: 6, y: 1, z: 5}
   spawnTimeRange: {x: 3, y: 7}
   trashObject: {fileID: 6494162292774628152, guid: 1ba548eb5098e0c469a52cbe663d6da9, type: 3}
 --- !u!4 &2051698706
@@ -9027,7 +9028,7 @@ Transform:
   m_GameObject: {fileID: 2051698704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 17, z: -70}
+  m_LocalPosition: {x: 0, y: 17, z: -68.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -50,6 +50,7 @@ public class BuoyancyEffector3D : MonoBehaviour
         foreach (Rigidbody rb in stayObjects.ObjectsHash)
         {
             if (rb == null) continue;
+            if (rb.isKinematic) continue;
 
             Vector3 pos = rb.worldCenterOfMass;
 
