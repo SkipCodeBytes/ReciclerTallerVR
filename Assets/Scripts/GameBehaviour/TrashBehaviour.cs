@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class TrashBehaviour : MonoBehaviour
 {
-    private float maxYPos = -5;
+    public float maxYPos = -5;
 
     void Update()
     {
-        if(maxYPos < -5) gameObject.SetActive(false);
+        if(maxYPos > transform.position.y) gameObject.SetActive(false);
     }
 }
