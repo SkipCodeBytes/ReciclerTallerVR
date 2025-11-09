@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 4379724265662851072}
   - component: {fileID: 20931274780103758}
   m_Layer: 0
-  m_Name: Trash_TireVR
+  m_Name: Trash_Tire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

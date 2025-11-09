@@ -1,23 +1,41 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TrashSpawner : MonoBehaviour
 {
     [SerializeField] private Vector3 spawnAreaBox = Vector3.one;
     [SerializeField] private Vector2 spawnTimeRange = new Vector2(2f, 5f);
-    [SerializeField] private GameObject trashObject;
+    [SerializeField] private List<GameObject> trashObjectList = new List<GameObject>();
 
     private float spawnTime = 0;
     
     void Update()
     {
-        // Actualizar información de debug en el inspector
         if (spawnTime < Time.time)
         {
             spawnTime = Time.time + Random.Range(spawnTimeRange.x, spawnTimeRange.y);
-            GameObject trash = InstanceManager.Instance.GetObject(trashObject);
-            trash.transform.position = GetRandomSpawnPosition();
-            trash.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            SpawnRandomTrash();
+        }
+    }
+    
+    private void SpawnRandomTrash()
+    {
+        if (trashObjectList.Count == 0) return;
+
+        int randomIndex = Random.Range(0, trashObjectList.Count);
+        GameObject selectedTrashPrefab = trashObjectList[randomIndex];
+        
+        if (selectedTrashPrefab == null) return;
+
+        GameObject trash = InstanceManager.Instance.GetObject(selectedTrashPrefab);
+        trash.transform.position = GetRandomSpawnPosition();
+        
+        Rigidbody rb = trash.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
     
