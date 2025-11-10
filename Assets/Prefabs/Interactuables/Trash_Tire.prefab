@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 8239289237490952492}
   - component: {fileID: 4379724265662851072}
   - component: {fileID: 20931274780103758}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trash_Tire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

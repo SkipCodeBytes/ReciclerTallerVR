@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5275652231682005974}
   - component: {fileID: 2388163710607635329}
   - component: {fileID: 537337485461843236}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trash_Costal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

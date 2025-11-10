@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3281606212183532406}
   - component: {fileID: 5843711508128263037}
   - component: {fileID: 4211016679591374064}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trash_Battery
   m_TagString: Untagged
   m_Icon: {fileID: 0}

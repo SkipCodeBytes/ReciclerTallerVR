@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1044468505468583033}
   - component: {fileID: 4713192231926864733}
   - component: {fileID: -5251706874274243713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trash_Sixpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

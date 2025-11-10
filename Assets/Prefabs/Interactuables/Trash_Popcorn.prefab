@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4341443045886653789}
   - component: {fileID: 1815300188647997526}
   - component: {fileID: 9187552629114273153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trash_Popcorn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
