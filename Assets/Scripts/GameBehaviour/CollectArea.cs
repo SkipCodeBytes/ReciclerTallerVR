@@ -19,9 +19,12 @@ public class CollectArea : MonoBehaviour
         if (((1 << other.gameObject.layer) & trashLayerMask) != 0)
         {
             TrashBehaviour trashBehaviour = other.GetComponent<TrashBehaviour>();
+
+            GameObject particles = InstanceManager.Instance.GetObject(scoreParticles);
+            particles.transform.position = other.transform.position;
+
             if (trashBehaviour != null)
             {
-                gameObject.transform.position = other.transform.position;
                 TrashType trashType = trashBehaviour.TrashType;
                 trashBehaviour.IsScored = true;
                 ProcessTrash(trashType, other.gameObject);
@@ -33,7 +36,6 @@ public class CollectArea : MonoBehaviour
     {
         if (acceptedTrashTypes.Contains(trashType))
         {
-            GameObject gameObject = InstanceManager.Instance.GetObject(scoreParticles);
             EventManager.TriggerEvent("Score+");
         }
         else
@@ -41,5 +43,4 @@ public class CollectArea : MonoBehaviour
             EventManager.TriggerEvent("Score-");
         }
     }
-    
 }

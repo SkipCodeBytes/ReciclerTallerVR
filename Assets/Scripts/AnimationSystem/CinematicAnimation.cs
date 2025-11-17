@@ -115,7 +115,7 @@ public class CinematicAnimation : MonoBehaviour
 
 
     //ESCALA
-    static public IEnumerator ScaleTo(Transform affectedTransform, Vector3 target, float duration, Action callback)
+    static public IEnumerator ScaleTo(Transform affectedTransform, Vector3 target, float duration, Action callback = null)
     {
         return LerpUtils.LerpVector3(value => affectedTransform.localScale = value, affectedTransform.localScale, target, duration, callback);
     }

@@ -33,6 +33,7 @@ public class PasserbySpawner : MonoBehaviour
             lastSpawnTime = Time.time + Random.Range(spawnFrequencyRange.x, spawnFrequencyRange.y);
             Transform passerby = InstanceManager.Instance.GetObject(passerbyObject).transform;
             passerby.position = pointSpawnerA.position;
+            passerby.LookAt(pointSpawnerB);
             StartCoroutine(CinematicAnimation.MoveTowardTheTargetAt(passerby, pointSpawnerB.position, moventSpeed, () => { passerby.gameObject.SetActive(false); }));
         }
     }

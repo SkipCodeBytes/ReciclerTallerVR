@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d43b2d857d65b4c9011f131bebc79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PasserbySpawner
-  passerbyObject: {fileID: 5111949815706029316, guid: 6588dded0b6d9d34abe3d28414074d9d, type: 3}
+  passerbyObject: {fileID: 4989850801042898817, guid: c178a23b80ab61648a1f5b756b8d26da, type: 3}
   trashObjectList:
   - {fileID: 8157777066997665851, guid: fa6655f68a168c143a0af540ab42c768, type: 3}
   - {fileID: 3377455172428114942, guid: 2b334b6e48ab43248bbbec25c6aedf3a, type: 3}

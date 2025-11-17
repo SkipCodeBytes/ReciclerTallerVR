@@ -29,4 +29,25 @@ public class AreaEffector3D : MonoBehaviour
             rb.AddForce(cachedWorldDir * forceMagnitude, forceMode);
         }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Vector3 worldDirection = transform.TransformDirection(forceDirection.normalized);
+        float arrowLength = Mathf.Clamp(forceMagnitude * 0.1f, 1f, 5f);
+        
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(transform.position, worldDirection * arrowLength);
+        
+        // Dibujar punta de flecha
+        Vector3 arrowTip = transform.position + worldDirection * arrowLength;
+        Vector3 right = Vector3.Cross(worldDirection, Vector3.up).normalized * 0.3f;
+        Vector3 up = Vector3.Cross(right, worldDirection).normalized * 0.3f;
+        
+        Gizmos.DrawLine(arrowTip, arrowTip - worldDirection * 0.5f + right);
+        Gizmos.DrawLine(arrowTip, arrowTip - worldDirection * 0.5f - right);
+        Gizmos.DrawLine(arrowTip, arrowTip - worldDirection * 0.5f + up);
+        Gizmos.DrawLine(arrowTip, arrowTip - worldDirection * 0.5f - up);
+    }
+#endif
 }
