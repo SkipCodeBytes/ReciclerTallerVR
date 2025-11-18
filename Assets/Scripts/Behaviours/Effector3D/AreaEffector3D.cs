@@ -31,7 +31,7 @@ public class AreaEffector3D : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Vector3 worldDirection = transform.TransformDirection(forceDirection.normalized);
         float arrowLength = Mathf.Clamp(forceMagnitude * 0.1f, 1f, 5f);

@@ -25,9 +25,6 @@ public class TrashBehaviour : MonoBehaviour
 
     void Update()
     {
-        if(maxYPos > transform.position.y) 
-        {
-            gameObject.SetActive(false);
-        }
+        if(maxYPos > transform.position.y) gameObject.SetActive(false);
     }
 }
