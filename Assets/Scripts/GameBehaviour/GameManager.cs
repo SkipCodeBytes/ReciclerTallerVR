@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class GameManager : MonoBehaviour
     static public GameManager instance;
     
     public int PlayerScore = 0;
+    public TextMeshProUGUI txtPoints;
 
     private void Awake()
     {
@@ -14,8 +16,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        EventManager.StartListening("Score+", () => PlayerScore++);
-        EventManager.StartListening("Score-", () => PlayerScore--);
+        EventManager.StartListening("Score+", () => 
+        {
+            PlayerScore++;
+            txtPoints.text = "Puntos: " + PlayerScore;
+
+        });
+        EventManager.StartListening("Score-", () => 
+        { 
+            PlayerScore--;
+            txtPoints.text = "Puntos: " + (PlayerScore * 10);
+        });
     }
 
 }
