@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class CollectArea : MonoBehaviour
 {
     [SerializeField] private LayerMask trashLayerMask;
-    [SerializeField] private List<TrashType> acceptedTrashTypes = new List<TrashType>();
+    [SerializeField] private TrashType acceptedTrashType;
     [SerializeField] private GameObject scoreParticles;
 
     [SerializeField] private List<TrashBehaviour> trashBehaviours = new List<TrashBehaviour>();
@@ -33,7 +33,7 @@ public class CollectArea : MonoBehaviour
             TrashType trashType = trashBehaviour.TrashType;
             trashBehaviour.IsScored = true;
 
-            if (acceptedTrashTypes.Contains(trashType)) EventManager.TriggerEvent("Score+");
+            if (acceptedTrashType == trashType) EventManager.TriggerEvent("Score+");
             else EventManager.TriggerEvent("Score-");
 
             trashBehaviours.Add(trashBehaviour);

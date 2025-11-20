@@ -8,6 +8,10 @@ public class TiggerStayObjects : MonoBehaviour
     [SerializeField] private LayerMask affectedLayers = ~0;
     public readonly HashSet<Rigidbody> ObjectsHash = new HashSet<Rigidbody>();
 
+    [Header("Splash Particles")]
+    [SerializeField] private GameObject particlesObj;
+    [SerializeField] private float minVelocityToEmit = 2f;
+
     [Header("Gizmos")]
     [SerializeField] private Color gizmoColor = new Color(0f, 0.5f, 1f, 0.25f);
     [SerializeField] private bool drawGizmos = true;
@@ -30,6 +34,14 @@ public class TiggerStayObjects : MonoBehaviour
         if ((affectedLayers.value & (1 << other.gameObject.layer)) == 0) return;
         var rb = other.attachedRigidbody;
         if (rb != null) ObjectsHash.Add(rb);
+
+        if (particlesObj == null) return;
+
+        if (rb.linearVelocity.y < -minVelocityToEmit)
+        {
+            GameObject splashParticle = InstanceManager.Instance.GetObject(particlesObj);
+            splashParticle.transform.position = other.transform.position;
+        }
     }
 
     private void OnTriggerExit(Collider other)

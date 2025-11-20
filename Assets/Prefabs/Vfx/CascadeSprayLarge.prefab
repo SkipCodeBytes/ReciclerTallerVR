@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2543435739104553263}
   - component: {fileID: 4920956782993324165}
   - component: {fileID: 7933234518546635646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CascadeSprayLarge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
