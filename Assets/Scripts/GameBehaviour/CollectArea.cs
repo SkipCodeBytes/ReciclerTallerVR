@@ -25,7 +25,7 @@ public class CollectArea : MonoBehaviour
             TrashBehaviour trashBehaviour = other.GetComponent<TrashBehaviour>();
 
             if (trashBehaviour == null) return;
-            if (!trashBehaviour.IsScored) return;
+            if (trashBehaviour.IsScored) return;
 
             GameObject particles = InstanceManager.Instance.GetObject(scoreParticles);
             particles.transform.position = other.transform.position;

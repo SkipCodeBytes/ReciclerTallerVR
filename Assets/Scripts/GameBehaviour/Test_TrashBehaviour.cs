@@ -68,40 +68,20 @@ public class Test_TrashBehaviour : MonoBehaviour
         
         switch (currentTrashType)
         {
-            case TrashType.Plastic:
+            case TrashType.Reciclable:
                 if (plasticModel != null)
                 {
                     plasticModel.SetActive(true);
                 }
                 break;
                 
-            case TrashType.Glass:
+            case TrashType.NoReciclable:
                 if (glassModel != null)
                 {
                     glassModel.SetActive(true);
                 }
                 break;
                 
-            case TrashType.Paper:
-                if (paperModel != null)
-                {
-                    paperModel.SetActive(true);
-                }
-                break;
-                
-            case TrashType.Metal:
-                if (metalModel != null)
-                {
-                    metalModel.SetActive(true);
-                }
-                break;
-                
-            case TrashType.Organic:
-                if (organicModel != null)
-                {
-                    organicModel.SetActive(true);
-                }
-                break;
         }
     }
     

@@ -198,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Trash_V2
   trashType: 1
   maxYPos: -5
+  IsScored: 0
 --- !u!1 &7169521056632577675
 GameObject:
   m_ObjectHideFlags: 0

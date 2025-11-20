@@ -10,6 +10,11 @@ public class TrashBehaviour : MonoBehaviour
 
     public TrashType TrashType { get => trashType; }
 
+    private void OnEnable()
+    {
+        IsScored = false;
+    }
+/*
     private void Awake()
     {
         _normalScale = transform.localScale;
@@ -20,7 +25,7 @@ public class TrashBehaviour : MonoBehaviour
         IsScored = false;
         transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
         StartCoroutine(CinematicAnimation.ScaleTo(transform, _normalScale, 0.5f));
-    }
+    }*/
 
 
     void Update()

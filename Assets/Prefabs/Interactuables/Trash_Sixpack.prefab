@@ -196,8 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7ba412ddd8f764a87c035bf3fdf22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trash_V2
-  trashType: 4
+  trashType: 1
   maxYPos: -5
+  IsScored: 0
 --- !u!1 &9056830287676195474
 GameObject:
   m_ObjectHideFlags: 0
