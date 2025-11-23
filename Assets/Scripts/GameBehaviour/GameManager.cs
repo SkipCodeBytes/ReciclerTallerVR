@@ -41,7 +41,9 @@ public class GameManager : MonoBehaviour
 
 	    if(gameTimer > 0){
 	    	gameTimer -= Time.deltaTime;
-	    	txtTime.text = "Tiempo: " + (int)(gameTimer / 60) + ":" + (int) (gameTimer % 60);
+	    	int minutes = (int)(gameTimer / 60);
+	    	int seconds = (int)(gameTimer % 60);
+	    	txtTime.text = "Tiempo: " + minutes + ":" + seconds.ToString("00");
 	    } else {
       		initGame = false;
 		truck.SetActive(true);

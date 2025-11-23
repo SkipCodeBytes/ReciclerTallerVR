@@ -460,7 +460,7 @@ MonoBehaviour:
   sineWave3D: {fileID: 2128915360}
   floatStrength: 8
   damping: 0.03
-  floatLevel: 1.5
+  floatLevel: 1.2
   gizmoLevelColor: {r: 0.2, g: 0.6, b: 1, a: 0.6}
   drawLevelLine: 1
 --- !u!114 &128418518
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   sineWave3D: {fileID: 2128915360}
   floatStrength: 8
   damping: 0.03
-  floatLevel: 1.5
+  floatLevel: 1.2
   gizmoLevelColor: {r: 0.2, g: 0.6, b: 1, a: 0.6}
   drawLevelLine: 1
 --- !u!114 &428986220
@@ -3036,7 +3036,7 @@ MonoBehaviour:
   sineWave3D: {fileID: 2128915360}
   floatStrength: 8
   damping: 0.03
-  floatLevel: 1.5
+  floatLevel: 1.2
   gizmoLevelColor: {r: 0.2, g: 0.6, b: 1, a: 0.6}
   drawLevelLine: 1
 --- !u!114 &932627646
@@ -4763,7 +4763,7 @@ Transform:
   m_GameObject: {fileID: 1473880597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.625, z: 0}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5540,7 +5540,7 @@ MonoBehaviour:
   sineWave3D: {fileID: 2128915360}
   floatStrength: 8
   damping: 0.03
-  floatLevel: 1.5
+  floatLevel: 1.2
   gizmoLevelColor: {r: 0.2, g: 0.6, b: 1, a: 0.6}
   drawLevelLine: 1
 --- !u!114 &1850561924
@@ -5648,7 +5648,7 @@ MonoBehaviour:
   sineWave3D: {fileID: 0}
   floatStrength: 8
   damping: 0.03
-  floatLevel: 2.4
+  floatLevel: 2.2
   gizmoLevelColor: {r: 0.2, g: 0.6, b: 1, a: 0.6}
   drawLevelLine: 1
 --- !u!114 &1865433257
@@ -5757,7 +5757,7 @@ MonoBehaviour:
   sineWave3D: {fileID: 1869008400}
   floatStrength: 8
   damping: 0.03
-  floatLevel: 1.5
+  floatLevel: 1.2
   gizmoLevelColor: {r: 0.2, g: 0.6, b: 1, a: 0.6}
   drawLevelLine: 1
 --- !u!114 &1869008398
@@ -5809,7 +5809,7 @@ MonoBehaviour:
   amplitude: 0.05
   frequency: 2
   speed: 1
-  baseHeight: 0.925
+  baseHeight: 1
   showGrid: 1
   gizmoColor: {r: 0, g: 1, b: 1, a: 1}
   gizmoSize: 10
@@ -6971,6 +6971,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7870390702081003765, guid: 27c02704f47bac44bab933817e15e197, type: 3}
   m_PrefabInstance: {fileID: 2099096207}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2124972245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2124972247}
+  - component: {fileID: 2124972246}
+  m_Layer: 0
+  m_Name: ComentarySystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2124972246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124972245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2a0ae2e680f314e88d161885ab7696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ComentarySystem
+  rotationSpeed: {x: 0, y: 50, z: 0}
+  textPrefab: {fileID: 9053630664633438756, guid: ddf5e832ddc76894da4ef5241b958eb1, type: 3}
+  poolSize: 5
+  textPool: []
+  initPosition: {x: 0, y: 0, z: 4}
+  YPositionRange: {x: -1, y: 1}
+  textSizeRange: {x: 1.5, y: 3}
+  reactionSpawnRange: {x: 1, y: 6}
+  duration: 6.5
+  goodColor: {r: 0, g: 1, b: 0, a: 1}
+  badColor: {r: 1, g: 0, b: 0, a: 1}
+  reactionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  goodComentaries:
+  - "\xA1Genial!"
+  - "\xA1Sigue as\xED!"
+  - "\xA1Excelente!"
+  - "\xA1Muy bien!"
+  - "\xA1Perfecto!"
+  - "\xA1Incre\xEDble!"
+  - "\xA1Fant\xE1stico!"
+  - "\xA1Bien hecho!"
+  - "\xA1As\xED se hace!"
+  - "\xA1Qu\xE9 pro!"
+  badComentaries:
+  - "Creo que eso no va ah\xED"
+  - "\xA1Cuidado!"
+  - Mmm, no creo
+  - "\xA1Ups!"
+  - "Int\xE9ntalo de nuevo"
+  - No es el lugar correcto
+  - "\xA1Oye, espera!"
+  - Mejor revisa eso
+  - "\xA1No tan r\xE1pido!"
+  - "Pi\xE9nsalo mejor"
+  reactionComentaries:
+  - "\xA1No te rindas!"
+  - "\xA1Qu\xE9 palta!"
+  - "\xA1Vamos!"
+  - "\xA1T\xFA puedes!"
+  - "\xA1Dale que va!"
+  - "\xA1Interesante!"
+  - "\xA1Wow!"
+  - "\xA1Guau!"
+  - "\xA1Impresionante!"
+  - "\xA1Qu\xE9 locura!"
+--- !u!4 &2124972247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124972245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2128915358
 GameObject:
   m_ObjectHideFlags: 0
@@ -7036,6 +7125,135 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7870390702081003765, guid: 27c02704f47bac44bab933817e15e197, type: 3}
   m_PrefabInstance: {fileID: 2049064532}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2142576374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142576376}
+  - component: {fileID: 2142576375}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &2142576375
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142576374}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: c96c98aa3c49a864c88653df347b95f6, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.9924927
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &2142576376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142576374}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6542976314987530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7870390702081003765, guid: 27c02704f47bac44bab933817e15e197, type: 3}
@@ -7260,9 +7478,11 @@ SceneRoots:
   - {fileID: 200516171}
   - {fileID: 406041874}
   - {fileID: 465362741}
+  - {fileID: 2142576376}
   - {fileID: 1900563552}
   - {fileID: 2032487730}
   - {fileID: 1473880602}
   - {fileID: 1603755376}
   - {fileID: 1885381996}
   - {fileID: 1361567690}
+  - {fileID: 2124972247}

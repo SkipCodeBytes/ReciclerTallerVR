@@ -57,6 +57,8 @@ MonoBehaviour:
   - {fileID: 7557087854191028322, guid: fea468f1656eed3438c8a2628f493849, type: 3}
   - {fileID: 3541219016550237121, guid: 1c3a8c98cdc6d9445833814b97313d1b, type: 3}
   - {fileID: 8538176812615875395, guid: 0d2c6a0495b6b0b438fbf00abe9aece4, type: 3}
+  - {fileID: 8157777066997665851, guid: fa6655f68a168c143a0af540ab42c768, type: 3}
+  - {fileID: 3541219016550237121, guid: 1c3a8c98cdc6d9445833814b97313d1b, type: 3}
   spawnFrequencyRange: {x: 4, y: 7}
   moventSpeed: 3.5
   spawnTrashProbability: 0.75
