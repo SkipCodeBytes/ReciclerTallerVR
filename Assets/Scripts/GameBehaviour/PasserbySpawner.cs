@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PasserbySpawner : MonoBehaviour
 {
+    public bool IsActive = false;
+
     [SerializeField] private GameObject passerbyObject;
 
     [SerializeField] private List<GameObject> trashObjectList = new List<GameObject>();
@@ -20,14 +22,10 @@ public class PasserbySpawner : MonoBehaviour
 
     private float lastSpawnTime = 0;
 
-    void Start()
-    {
-        
-
-    }
-
     void Update()
     {
+        if (!IsActive) return;
+
         if(lastSpawnTime < Time.time)
         {
             lastSpawnTime = Time.time + Random.Range(spawnFrequencyRange.x, spawnFrequencyRange.y);
@@ -61,6 +59,8 @@ public class PasserbySpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!IsActive) return;
+
         if (other.CompareTag("Passerby"))
         {
             // Verificar probabilidad de generar basura

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class TrashSpawner : MonoBehaviour
 {
+    public bool IsActive = false;
     [SerializeField] private Vector3 spawnAreaBox = Vector3.one;
     [SerializeField] private Vector2 spawnTimeRange = new Vector2(2f, 5f);
     [SerializeField] private List<GameObject> trashObjectList = new List<GameObject>();
@@ -12,6 +13,7 @@ public class TrashSpawner : MonoBehaviour
     
     void Update()
     {
+        if(!IsActive) return;
         if (spawnTime < Time.time)
         {
             spawnTime = Time.time + Random.Range(spawnTimeRange.x, spawnTimeRange.y);

@@ -12,6 +12,8 @@ public enum CommentaryType
 
 public class ComentarySystem : MonoBehaviour
 {
+    public bool IsActive = false;
+
     [Header("Rotation Speed")]
     [SerializeField] private Vector3 rotationSpeed = new Vector3(0, 50, 0);
 
@@ -49,13 +51,17 @@ public class ComentarySystem : MonoBehaviour
     {
         InitializePool();
         reactionTimer = Random.Range(reactionSpawnRange.x, reactionSpawnRange.y);
+
+        EventManager.StartListening("Score+", ShowGoodCommentary);
+        EventManager.StartListening("Score-", ShowBadCommentary);
     }
 
     void Update()
     {
         transform.Rotate(rotationSpeed * Time.deltaTime);
-        
+
         // Timer para comentarios de reacción automáticos
+        if (!IsActive) return;
         reactionTimer -= Time.deltaTime;
         if (reactionTimer <= 0f)
         {

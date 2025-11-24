@@ -7,6 +7,9 @@ public class CollectArea : MonoBehaviour
     [SerializeField] private TrashType acceptedTrashType;
     [SerializeField] private GameObject scoreParticles;
 
+    [SerializeField] private AudioClip checkSound;
+    [SerializeField] private AudioClip failSound;
+
     [SerializeField] private List<TrashBehaviour> trashBehaviours = new List<TrashBehaviour>();
     
     private GameManager _gm;
@@ -15,7 +18,7 @@ public class CollectArea : MonoBehaviour
 
     private void Start()
     {
-        _gm = GameManager.instance;
+        _gm = GameManager.Instance;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,14 +30,21 @@ public class CollectArea : MonoBehaviour
             if (trashBehaviour == null) return;
             if (trashBehaviour.IsScored) return;
 
-            GameObject particles = InstanceManager.Instance.GetObject(scoreParticles);
-            particles.transform.position = other.transform.position;
 
             TrashType trashType = trashBehaviour.TrashType;
             trashBehaviour.IsScored = true;
 
-            if (acceptedTrashType == trashType) EventManager.TriggerEvent("Score+");
-            else EventManager.TriggerEvent("Score-");
+            if (acceptedTrashType == trashType) { 
+                EventManager.TriggerEvent("Score+");
+                GameObject particles = InstanceManager.Instance.GetObject(scoreParticles);
+                SoundController.Instance.PlaySound(checkSound);
+                particles.transform.position = other.transform.position;
+            }
+            else 
+            {
+                EventManager.TriggerEvent("Score-");
+                SoundController.Instance.PlaySound(failSound);
+            }
 
             trashBehaviours.Add(trashBehaviour);
         }
