@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -28,6 +30,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PasserbySpawner passerbySpawnerA;
     [SerializeField] private PasserbySpawner passerbySpawnerB;
     [SerializeField] private ComentarySystem comentarySystem;
+    [SerializeField] private List<GameObject> TrashPrefabs;
+
+    [Header("End Game")]
+    [SerializeField] private GameObject despawnSfx;
+
 
     private float gameTimer;
     private int playerScore = 0;
@@ -135,7 +142,21 @@ public class GameManager : MonoBehaviour
         passerbySpawnerA.IsActive = false;
         passerbySpawnerB.IsActive = false;
         comentarySystem.IsActive = false;
-        
+
+        for(int i = 0; i < TrashPrefabs.Count; i++)
+        {
+            List<GameObject> prefabs = InstanceManager.Instance.GetPoolInstances(TrashPrefabs[i]);
+            for(int j = 0; j < prefabs.Count; j++)
+            {
+                if (prefabs[j].CompareTag("Untagged"))
+                {
+                    GameObject smokeSfx = InstanceManager.Instance.GetObject(despawnSfx);
+                    smokeSfx.transform.position = prefabs[j].transform.position;
+                    prefabs[j].SetActive(false);
+                }
+            }
+        }
+
         truck.SetActive(true);
     }
 

@@ -12,6 +12,7 @@ public class GameObjectPool
     private GameObject _pool;
 
     public GameObject Prefab { get => prefab;}
+    public List<GameObject> PoolContent { get => _poolContent; set => _poolContent = value; }
 
     public void FillPool()
     {

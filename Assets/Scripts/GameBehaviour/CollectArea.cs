@@ -28,11 +28,12 @@ public class CollectArea : MonoBehaviour
             TrashBehaviour trashBehaviour = other.GetComponent<TrashBehaviour>();
 
             if (trashBehaviour == null) return;
-            if (trashBehaviour.IsScored) return;
+            if (trashBehaviour.CompareTag("CollectedTrash")) return;
 
 
             TrashType trashType = trashBehaviour.TrashType;
-            trashBehaviour.IsScored = true;
+            //trashBehaviour.IsScored = true;
+            trashBehaviour.SetCollectedTag();
 
             if (acceptedTrashType == trashType) { 
                 EventManager.TriggerEvent("Score+");

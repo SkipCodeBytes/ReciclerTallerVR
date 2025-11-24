@@ -16,11 +16,20 @@ public class InstanceManager : MonoBehaviour
         foreach (GameObjectPool pool in _gamePool) pool.FillPool();
     }
 
-    public GameObject GetObject(GameObject prefab){
-        foreach (GameObjectPool pool in _gamePool){
-            if(pool.Prefab == prefab){
+    public GameObject GetObject(GameObject prefab) {
+        foreach (GameObjectPool pool in _gamePool) {
+            if (pool.Prefab == prefab) {
                 return pool.GetAvailableInstance();
             }
+        }
+        throw new System.Exception("Object not found in instance manager");
+    }
+
+    public List<GameObject> GetPoolInstances(GameObject prefab)
+    {
+        foreach (GameObjectPool pool in _gamePool)
+        {
+            if (pool.Prefab == prefab) return pool.PoolContent;
         }
         throw new System.Exception("Object not found in instance manager");
     }

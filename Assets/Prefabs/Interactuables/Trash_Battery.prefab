@@ -315,4 +315,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Trash_V2
   trashType: 2
   maxYPos: -5
-  IsScored: 0
+  defaultTag: Untagged
+  collectedTag: CollectedTrash

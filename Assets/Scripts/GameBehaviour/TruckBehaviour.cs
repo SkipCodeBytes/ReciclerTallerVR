@@ -3,8 +3,12 @@ using System.Collections.Generic;
 
 public class TruckBehaviour : MonoBehaviour
 {
-    [SerializeField] private List<CollectArea> collectAreas = new List<CollectArea>();
-    [SerializeField] private Vector2 collectTimeRange = new Vector2(1f, 2f);
+    //[SerializeField] private List<CollectArea> collectAreas = new List<CollectArea>();
+
+    [SerializeField] private CollectArea collectAreaA;
+    [SerializeField] private CollectArea collectAreaB;
+    [SerializeField] private float collectTime = 0.5f;
+    [SerializeField] private float collectDuration = 1f;
 
     private Animator animator;
 
@@ -15,24 +19,33 @@ public class TruckBehaviour : MonoBehaviour
 
     public void CollectTrash()
     {
-        foreach (CollectArea area in collectAreas)
-        {
-            if (area != null && area.TrashBehaviours != null)
-            {
-                for (int i = 0; i < area.TrashBehaviours.Count; i++)
-                {
-                    StartCoroutine(CinematicAnimation.ParabolicMotion(
-                        area.TrashBehaviours[i].transform, transform.position, Random.Range(collectTimeRange.x, collectTimeRange.y),
-                        () => area.TrashBehaviours[i].gameObject.SetActive(false)));
-                }
-                
-                area.TrashBehaviours.Clear();
-            }
-        }
+        float time = 0;
 
-        StartCoroutine(CinematicAnimation.WaitTime(collectTimeRange.y + 0.5f, () =>
+        for (int i = 0; i < collectAreaA.TrashBehaviours.Count; i++)
         {
-            animator.Play("EndTruck");
-        }));
+            StartCoroutine(CinematicAnimation.WaitTime(time, () =>
+            {
+                StartCoroutine(CinematicAnimation.ParabolicMotion(
+                    collectAreaA.TrashBehaviours[i].transform, transform.position, collectDuration,
+                    () => collectAreaA.TrashBehaviours[i].gameObject.SetActive(false)));
+                time += collectTime;
+            }));
+
+        }
+        collectAreaA.TrashBehaviours.Clear();
+
+        for (int i = 0; i < collectAreaB.TrashBehaviours.Count; i++)
+        {
+            StartCoroutine(CinematicAnimation.WaitTime(time, () =>
+            {
+                StartCoroutine(CinematicAnimation.ParabolicMotion(
+                collectAreaB.TrashBehaviours[i].transform, transform.position, collectDuration,
+                () => collectAreaB.TrashBehaviours[i].gameObject.SetActive(false)));
+                time += collectTime;
+            }));
+        }
+        collectAreaB.TrashBehaviours.Clear();
+
+        StartCoroutine(CinematicAnimation.WaitTime(time, () => { animator.Play("EndTruck"); }));
     }
 }
