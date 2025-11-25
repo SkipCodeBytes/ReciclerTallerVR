@@ -12,6 +12,8 @@ public enum CommentaryType
 
 public class ComentarySystem : MonoBehaviour
 {
+    public static ComentarySystem Instance;
+    
     public bool IsActive = false;
 
     [Header("Rotation Speed")]
@@ -47,13 +49,19 @@ public class ComentarySystem : MonoBehaviour
 
     private float reactionTimer = 0f;
     
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+    
     void Start()
     {
         InitializePool();
         reactionTimer = Random.Range(reactionSpawnRange.x, reactionSpawnRange.y);
 
-        EventManager.StartListening("Score+", ShowGoodCommentary);
-        EventManager.StartListening("Score-", ShowBadCommentary);
+        EventManager.StartListening("Score+", () => ShowGoodCommentary());
+        EventManager.StartListening("Score-", () => ShowBadCommentary());
     }
 
     void Update()
@@ -81,7 +89,7 @@ public class ComentarySystem : MonoBehaviour
         }
     }
 
-    public void ShowCommentary(string text, CommentaryType type)
+    public void ShowCommentary(string text, CommentaryType type, float? fontSize = null)
     {
         GameObject textObj = GetPooledObject();
         if (textObj == null) return;
@@ -106,7 +114,7 @@ public class ComentarySystem : MonoBehaviour
         if (textMesh != null)
         {
             textMesh.text = text;
-            textMesh.fontSize = Random.Range(textSizeRange.x, textSizeRange.y);
+            textMesh.fontSize = fontSize ?? Random.Range(textSizeRange.x, textSizeRange.y);
 
 
             // Asignar color según tipo
@@ -181,10 +189,49 @@ public class ComentarySystem : MonoBehaviour
         }
     }
     
-    // Métodos con texto personalizado (mantener compatibilidad)
-    public void ShowGoodCommentary(string text) => ShowCommentary(text, CommentaryType.Good);
-    public void ShowBadCommentary(string text) => ShowCommentary(text, CommentaryType.Bad);
-    public void ShowReactionCommentary(string text) => ShowCommentary(text, CommentaryType.Reaction);
+    // Método con control completo de texto, tamaño y color
+    public void ShowCustomCommentary(string text, float? fontSize = null, Color? color = null)
+    {
+        GameObject textObj = GetPooledObject();
+        if (textObj == null) return;
+
+        // Posición mundial (no afectada por la rotación del padre) con variación en Y
+        Vector3 worldPosition = transform.position + initPosition;
+        worldPosition.y += Random.Range(YPositionRange.x, YPositionRange.y);
+        textObj.transform.position = worldPosition;
+        
+        // Hacer que el texto mire hacia el centro (posición de este objeto) con 180° adicionales
+        Vector3 direction = transform.position - textObj.transform.position;
+        if (direction != Vector3.zero)
+        {
+            textObj.transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 180, 0);
+        }
+
+        textObj.SetActive(true);
+
+        // Configurar texto
+        TextMeshPro textMesh = textObj.GetComponent<TextMeshPro>();
+        if (textMesh != null)
+        {
+            textMesh.text = text;
+            textMesh.fontSize = fontSize ?? Random.Range(textSizeRange.x, textSizeRange.y);
+            
+            Color targetColor = color ?? Color.white;
+            Color startColor = targetColor;
+            startColor.a = 0f;
+            
+            StartCoroutine(LerpUtils.LerpColor(c => textMesh.color = c, startColor, targetColor, 0.5f));
+        }
+
+        StartCoroutine(CinematicAnimation.WaitTime(duration, () =>
+        {
+            Color fadeColor = textMesh.color;
+            fadeColor.a = 0f;
+            StartCoroutine(LerpUtils.LerpColor(c => textMesh.color = c, textMesh.color, fadeColor, 0.5f,
+                () => textObj.SetActive(false)));
+        }));
+    }
+    
 }
 
 

@@ -106,6 +106,8 @@ public class GameManager : MonoBehaviour
         passerbySpawnerA.IsActive = true;
         passerbySpawnerB.IsActive = true;
         StartCoroutine(CountdownRoutine());
+
+        ComentarySystem.Instance.ShowCustomCommentary("¡Empezó la hora punta!", 3.5f, Color.cyan);
     }
     
     private IEnumerator CountdownRoutine()
@@ -165,6 +167,8 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        ComentarySystem.Instance.ShowCustomCommentary("¡Ya llega el camión de basura!", 3.5f, Color.cyan);
 
         StartCoroutine(LerpUtils.LerpFloat(value => gameMusic.volume = value, 1f, 0f, 1.2f, () =>
         {
