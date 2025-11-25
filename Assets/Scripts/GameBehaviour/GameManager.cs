@@ -32,14 +32,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ComentarySystem comentarySystem;
     [SerializeField] private List<GameObject> TrashPrefabs;
 
-    [Header("End Game")]
-    [SerializeField] private GameObject despawnSfx;
+    [SerializeField] private List<TiggerStayObjects> tiggerStayObjects;
 
+    [Header("End Game")]
+    [SerializeField] private TextMeshPro txtBonus;
+    [SerializeField] private GameObject despawnSfx;
+    [SerializeField] private AudioClip resetGameSound;
 
     private float gameTimer;
     private int playerScore = 0;
 
     [SerializeField] private GameObject truck;
+
+    public int PlayerScore { get => playerScore; set => playerScore = value; }
 
     private void Awake()
     {
@@ -51,14 +56,14 @@ public class GameManager : MonoBehaviour
     {
         EventManager.StartListening("Score+", () => 
         {
-            playerScore += 2;
-            txtPoints.text = "Puntos: " + (playerScore * 10);
+            PlayerScore += 30;
+            txtPoints.text = "Puntos: " + (PlayerScore);
 
         });
         EventManager.StartListening("Score-", () => 
         { 
-            playerScore--;
-            txtPoints.text = "Puntos: " + (playerScore * 10);
+            PlayerScore -= 10;
+            txtPoints.text = "Puntos: " + (PlayerScore);
         });
 
         //EventManager.StartListening("InitGame",() => InitGame());
@@ -127,12 +132,13 @@ public class GameManager : MonoBehaviour
         initPanel.SetActive(false);
         txtPoints.gameObject.SetActive(true);
         txtTime.gameObject.SetActive(true);
+        txtBonus.gameObject.SetActive(false);
 
         comentarySystem.IsActive = true;
 
         gameMusic.Play();
         gameTimer = roundDuration;
-        playerScore = 0;
+        PlayerScore = 0;
         playingGame = true;
     }
 
@@ -143,7 +149,10 @@ public class GameManager : MonoBehaviour
         passerbySpawnerB.IsActive = false;
         comentarySystem.IsActive = false;
 
-        for(int i = 0; i < TrashPrefabs.Count; i++)
+        txtPoints.gameObject.SetActive(false);
+        txtTime.gameObject.SetActive(false);
+
+        for (int i = 0; i < TrashPrefabs.Count; i++)
         {
             List<GameObject> prefabs = InstanceManager.Instance.GetPoolInstances(TrashPrefabs[i]);
             for(int j = 0; j < prefabs.Count; j++)
@@ -157,21 +166,36 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        StartCoroutine(LerpUtils.LerpFloat(value => gameMusic.volume = value, 1f, 0f, 1.2f, () =>
+        {
+            gameMusic.Stop();
+            gameMusic.volume = 1f;
+        }));
         truck.SetActive(true);
+        txtBonus.gameObject.SetActive(true);
+        txtBonus.text = $"Bonus x0\r\nPuntos Totales: {PlayerScore}";
     }
 
     public void RestartGame()
     {
-        
+        foreach(TiggerStayObjects tiggers in tiggerStayObjects)
+        {
+            tiggers.ObjectsHash.Clear();
+        }
+
         initPanel.SetActive(true);
         pokeObject.SetActive(true);
         txtInfo.gameObject.SetActive(true);
         txtInitCount.gameObject.SetActive(false);
         txtPoints.gameObject.SetActive(false);
         txtTime.gameObject.SetActive(false);
+        txtBonus.gameObject.SetActive(false);
 
-        txtInfo.text = "Tu puntuación es: " + (playerScore * 10) + "\n¿Volver a jugar?";
+        SoundController.Instance.PlaySound(resetGameSound);
+        txtInfo.text = "Tu puntuación es: " + (PlayerScore) + "\n¿Volver a jugar?";
         playingGame = false;
+        PlayerScore = 0;
+        txtPoints.text = "Puntos: " + (PlayerScore);
 
     }
 }

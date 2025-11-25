@@ -10,11 +10,11 @@ public class CollectArea : MonoBehaviour
     [SerializeField] private AudioClip checkSound;
     [SerializeField] private AudioClip failSound;
 
-    [SerializeField] private List<TrashBehaviour> trashBehaviours = new List<TrashBehaviour>();
+    [SerializeField] private List<GameObject> trashObjects = new List<GameObject>();
     
     private GameManager _gm;
 
-    public List<TrashBehaviour> TrashBehaviours { get => trashBehaviours; set => trashBehaviours = value; }
+    public List<GameObject> TrashObjects { get => trashObjects; set => trashObjects = value; }
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class CollectArea : MonoBehaviour
                 SoundController.Instance.PlaySound(failSound);
             }
 
-            trashBehaviours.Add(trashBehaviour);
+            trashObjects.Add(trashBehaviour.gameObject);
         }
     }
     
